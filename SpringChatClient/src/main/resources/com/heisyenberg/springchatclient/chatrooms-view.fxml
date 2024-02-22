@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="640.0" prefWidth="480.0" style="-fx-background-color: #0e1621;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.heisyenberg.springchatclient.controllers.ChatRoomsController">
+    <children>
+        <ListView fx:id="roomsList" layoutX="1.0" layoutY="84.0" prefHeight="475.0" prefWidth="480.0" style="-fx-border-color: #1d242d; -fx-background-color: #0e1621;" />
+        <Label alignment="CENTER" layoutX="1.0" layoutY="51.0" prefHeight="30.0" prefWidth="480.0" text="Choose room to chat" textFill="WHITE">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Label alignment="CENTER" layoutX="1.0" layoutY="559.0" prefHeight="30.0" prefWidth="480.0" text="Create a new room" textFill="WHITE">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <TextField fx:id="newRoomName" layoutX="12.0" layoutY="598.0" prefHeight="30.0" prefWidth="399.0" style="-fx-border-color: #1d242d; -fx-background-color: #17212b; -fx-text-fill: white" />
+        <Button layoutX="411.0" layoutY="598.0" mnemonicParsing="false" onAction="#onCreateButton" prefHeight="30.0" prefWidth="58.0" style="-fx-background-color: #5288c1;" text="Create" textFill="WHITE" />
+        <ToolBar prefHeight="51.0" prefWidth="480.0" style="-fx-background-color: #0e1621; -fx-border-color: #1d242d;">
+            <items>
+                <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackButton" prefHeight="39.0" prefWidth="97.0" style="-fx-background-color: #0e1621; -fx-border-color: #1d242d;" text="＜ back" textFill="WHITE">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Label fx:id="username" alignment="CENTER" prefHeight="30.0" prefWidth="334.0" text="Username" textFill="WHITE">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+            </items>
+        </ToolBar>
+    </children>
+</AnchorPane>
