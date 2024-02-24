@@ -68,6 +68,10 @@ public class MessagesController implements Initializable {
         if (text.isEmpty() || webSocketClient == null) {
             return;
         }
+        if (text.length() >= 4096) {
+            ChatApplication.showError("Message length is out of bounds");
+            return;
+        }
         User sender = UserSession.getInstance().getUser();
         ChatRoom room = UserSession.getInstance().getChatRoom();
         Message message = new Message(null, sender, room, text);

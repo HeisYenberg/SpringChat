@@ -68,6 +68,9 @@ public class ChatRoomsController implements Initializable {
         if (roomName.isEmpty() || webSocketClient == null) {
             return;
         }
+        if (roomName.length() >= 255) {
+            ChatApplication.showError("Room name's size is out of bounds");
+        }
         User owner = UserSession.getInstance().getUser();
         ChatRoom room = new ChatRoom(null, roomName, owner);
         webSocketClient.send("/app/createRoom", room);

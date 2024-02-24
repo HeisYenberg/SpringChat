@@ -25,7 +25,8 @@ public class AuthenticationCallback implements Callback<User> {
         if (response.isSuccessful()) {
             User user = response.body();
             if (user == null) {
-                showError("User already exist, or invalid credentials!");
+               ChatApplication.showError(
+                       "User already exist, or invalid credentials!");
             } else {
                 UserSession.getInstance().setUser(user);
                 Platform.runLater(() -> {
@@ -42,15 +43,6 @@ public class AuthenticationCallback implements Callback<User> {
 
     @Override
     public void onFailure(Call<User> call, Throwable throwable) {
-        showError("Unable to connect to server!");
-    }
-
-    private void showError(String message) {
-        Platform.runLater(() -> {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(message);
-            alert.showAndWait();
-        });
+       ChatApplication.showError("Unable to connect to server!");
     }
 }

@@ -1,8 +1,10 @@
 package com.heisyenberg.springchatclient;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,6 +20,15 @@ public class ChatApplication extends Application {
                 new FXMLLoader(ChatApplication.class.getResource(resource));
         Scene scene = new Scene(fxmlLoader.load(), 480, 640);
         stage.setScene(scene);
+    }
+
+    public static void showError(String message) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(message);
+            alert.showAndWait();
+        });
     }
 
     @Override
