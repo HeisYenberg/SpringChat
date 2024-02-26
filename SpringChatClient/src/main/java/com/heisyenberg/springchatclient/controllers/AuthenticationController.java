@@ -1,5 +1,6 @@
 package com.heisyenberg.springchatclient.controllers;
 
+import com.heisyenberg.springchatclient.ChatApplication;
 import com.heisyenberg.springchatclient.callbacks.AuthenticationCallback;
 import com.heisyenberg.springchatclient.models.User;
 import com.heisyenberg.springchatclient.services.AuthenticationService;
@@ -21,14 +22,22 @@ public class AuthenticationController {
 
     @FXML
     void onSignIn() {
-        getUserService().signIn(getUser())
-                .enqueue(new AuthenticationCallback(signIn));
+        try {
+            getUserService().signIn(getUser())
+                    .enqueue(new AuthenticationCallback(signIn));
+        } catch (RuntimeException e) {
+            ChatApplication.showError(e.getMessage());
+        }
     }
 
     @FXML
     void onSignUp() {
-        getUserService().signUp(getUser()).
-                enqueue(new AuthenticationCallback(signUp));
+        try {
+            getUserService().signUp(getUser()).
+                    enqueue(new AuthenticationCallback(signUp));
+        } catch (RuntimeException e) {
+            ChatApplication.showError(e.getMessage());
+        }
     }
 
     private AuthenticationService getUserService() {
@@ -37,10 +46,14 @@ public class AuthenticationController {
     }
 
     private User getUser() {
-        String username = inputUsername.getText();
-        String password = inputPassword.getText();
+        String username = inputUsername.getText().trim();
+        String password = inputPassword.getText().trim();
         if (username.isEmpty() || password.isEmpty()) {
             return null;
+        }
+        if (username.length() > 40 || password.length() > 40) {
+            throw new RuntimeException("Username or Password " +
+                    "is out of bounds, 40 characters is the limit!");
         }
         return new User(null, username, password);
     }

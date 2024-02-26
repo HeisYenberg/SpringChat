@@ -64,12 +64,14 @@ public class ChatRoomsController implements Initializable {
 
     @FXML
     public void onCreateButton() {
-        String roomName = newRoomName.getText();
+        String roomName = newRoomName.getText().trim();
         if (roomName.isEmpty() || webSocketClient == null) {
             return;
         }
-        if (roomName.length() >= 255) {
-            ChatApplication.showError("Room name's size is out of bounds");
+        if (roomName.length() > 40) {
+            ChatApplication.showError("Room name's size is out of bounds, " +
+                    "40 characters is the limit!");
+            return;
         }
         User owner = UserSession.getInstance().getUser();
         ChatRoom room = new ChatRoom(null, roomName, owner);

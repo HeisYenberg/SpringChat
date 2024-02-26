@@ -35,6 +35,7 @@ public class MessagesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         getMessages();
+        messagesList.scrollTo(messagesList.getItems().size() - 1);
         roomName.setText(UserSession.getInstance().getChatRoom().getName());
         webSocketClient = new MessagesWebSocketClient(this);
         webSocketClient.connect();
@@ -64,7 +65,8 @@ public class MessagesController implements Initializable {
 
     @FXML
     public void onSendButton() {
-        String text = messageText.getText();
+        String text = messageText.getText().trim();
+        messageText.clear();
         if (text.isEmpty() || webSocketClient == null) {
             return;
         }
@@ -76,6 +78,5 @@ public class MessagesController implements Initializable {
         ChatRoom room = UserSession.getInstance().getChatRoom();
         Message message = new Message(null, sender, room, text);
         webSocketClient.send("/app/sendMessage", message);
-        messageText.clear();
     }
 }
