@@ -76,6 +76,7 @@ public class ChatRoomsController implements Initializable {
         User owner = UserSession.getInstance().getUser();
         ChatRoom room = new ChatRoom(null, roomName, owner);
         webSocketClient.send("/app/createRoom", room);
+        roomsList.scrollTo(roomsList.getItems().size() - 1);
         newRoomName.clear();
     }
 }
