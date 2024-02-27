@@ -19,7 +19,7 @@ public class MessagesListCell extends ListCell<Message> {
         super.updateItem(item, empty);
         setStyle("-fx-background-color: #0e1621;");
         if (item == null || empty) {
-            setText(null);
+            setGraphic(null);
             return;
         }
         HBox hBox = new HBox();

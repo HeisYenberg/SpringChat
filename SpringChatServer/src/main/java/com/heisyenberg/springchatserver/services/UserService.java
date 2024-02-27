@@ -39,8 +39,4 @@ public class UserService {
         }
         return null;
     }
-
-    public User getUserById(Long id) {
-        return repository.getReferenceById(id);
-    }
 }

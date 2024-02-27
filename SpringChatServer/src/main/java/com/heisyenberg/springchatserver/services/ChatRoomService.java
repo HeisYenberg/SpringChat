@@ -13,20 +13,13 @@ import java.util.Optional;
 @Service
 public class ChatRoomService {
     private final SimpMessagingTemplate template;
-    private final UsersRepository usersRepository;
     private final ChatRoomsRepository chatRoomsRepository;
 
     @Autowired
     public ChatRoomService(SimpMessagingTemplate template,
-                           UsersRepository usersRepository,
                            ChatRoomsRepository repository) {
         this.template = template;
-        this.usersRepository = usersRepository;
         this.chatRoomsRepository = repository;
-    }
-
-    public Optional<ChatRoom> getRoomById(Long id) {
-        return chatRoomsRepository.findById(id);
     }
 
     public void createRoom(ChatRoom room) {

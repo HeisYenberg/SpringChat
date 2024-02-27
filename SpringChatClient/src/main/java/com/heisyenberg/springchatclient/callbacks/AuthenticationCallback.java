@@ -4,7 +4,6 @@ import com.heisyenberg.springchatclient.ChatApplication;
 import com.heisyenberg.springchatclient.models.User;
 import com.heisyenberg.springchatclient.session.UserSession;
 import javafx.application.Platform;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import retrofit2.Call;
@@ -25,8 +24,8 @@ public class AuthenticationCallback implements Callback<User> {
         if (response.isSuccessful()) {
             User user = response.body();
             if (user == null) {
-               ChatApplication.showError(
-                       "User already exist, or invalid credentials!");
+                ChatApplication.showError(
+                        "User already exist, or invalid credentials!");
             } else {
                 UserSession.getInstance().setUser(user);
                 Platform.runLater(() -> {
@@ -43,6 +42,6 @@ public class AuthenticationCallback implements Callback<User> {
 
     @Override
     public void onFailure(Call<User> call, Throwable throwable) {
-       ChatApplication.showError("Unable to connect to server!");
+        ChatApplication.showError("Unable to connect to server!");
     }
 }

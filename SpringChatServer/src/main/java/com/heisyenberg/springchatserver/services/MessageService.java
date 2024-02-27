@@ -12,16 +12,10 @@ import java.util.List;
 @Service
 public class MessageService {
     private final MessagesRepository messagesRepository;
-    private final UsersRepository usersRepository;
-    private final ChatRoomsRepository chatRoomsRepository;
 
     @Autowired
-    public MessageService(MessagesRepository messagesRepository,
-                          UsersRepository usersRepository,
-                          ChatRoomsRepository chatRoomsRepository) {
+    public MessageService(MessagesRepository messagesRepository) {
         this.messagesRepository = messagesRepository;
-        this.usersRepository = usersRepository;
-        this.chatRoomsRepository = chatRoomsRepository;
     }
 
     public Message sendMessage(Message message) {
