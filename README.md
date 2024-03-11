@@ -22,3 +22,8 @@ SpringChat is a real-time chat application developed using Spring Boot, WebSocke
 1. Install PostgreSQL on your local machine or server.
 2. Create a new database for your application, run `schema.sql` script.
 3. Configure the database connection in your `application.properties` file with the following settings:
+
+```spring.datasource.url=jdbc:postgresql://localhost:5432/your_database_name
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+spring.jpa.hibernate.ddl-auto=update
